@@ -1,0 +1,4 @@
+Adicionar a seguinte linha no arquivo ~/.bashrc:
+
+export PATH=$PATH:~/.scripts/
+
