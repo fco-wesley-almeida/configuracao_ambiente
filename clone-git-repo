@@ -1,0 +1,9 @@
+#!/bin/bash
+
+user=fco-wesley-almeida
+pass=g5028841971
+account=lit-ipade
+repo=avcheck_web
+
+git clone https://$user:$pass@github.com/$account/$repo
+
