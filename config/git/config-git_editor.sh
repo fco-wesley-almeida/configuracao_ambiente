@@ -1,4 +1,4 @@
 #/bin/bash
 
-editor=vim
+editor="$1"
 git config --global core.editor "${editor}"
