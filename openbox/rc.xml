@@ -114,13 +114,11 @@
   <desktops>
     <!-- this stuff is only used at startup, pagers allow you to change them
        during a session
-
        these are default values to use when other ones are not already set
        by other applications, or saved in your session
-
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>5</number>
+    <number>6</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>A1</name>
@@ -128,6 +126,7 @@
       <name>A3</name>
       <name>A4</name>
       <name>A5</name>
+      <name>A6</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -180,12 +179,69 @@
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Keybindings for desktop switching -->
+	<keybind key="W-C-Left">
+	  <action name="MoveResizeTo">
+	    <!-- move the window to the second monitor -->
+	    <monitor>2</monitor>
+	  </action>
+	</keybind>
+
+	<keybind key="W-C-Right">
+	  <action name="MoveResizeTo">
+	    <!-- move the window to the second monitor -->
+	    <monitor>1</monitor>
+	  </action>
+	</keybind>
     <keybind key="C-A-Left">
       <action name="GoToDesktop">
         <to>left</to>
         <wrap>no</wrap>
       </action>
     </keybind>
+
+    <keybind key="C-A-g">
+      <action name="Execute">
+	<command>google-chrome</command>
+      </action>
+    </keybind>
+
+    <keybind key="C-A-p">
+      <action name="Execute">
+	<command>postman</command>
+      </action>
+    </keybind>
+
+      <keybind key="W-Left">
+	<action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>0</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>100%</height>
+        </action>
+    </keybind>
+    <keybind key="W-Right">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>1/2</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>100%</height>
+        </action>
+    </keybind>
+    <keybind key="W-Down">
+        <action name="Iconify"/>
+    </keybind>
+    <keybind key="W-Up">
+        <action name="Maximize"/>
+    </keybind>   
+
+    <keybind key="C-A-t">
+      <action name="Execute">
+	<command>terminator</command>
+      </action>
+    </keybind>
+
     <keybind key="C-A-Right">
       <action name="GoToDesktop">
         <to>right</to>
@@ -258,6 +314,13 @@
         <wrap>no</wrap>
       </action>
     </keybind>
+
+    <keybind key="W-A-KP_6">
+      <action name="SendToDesktop">
+        <to>6</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
     <keybind key="W-KP_1">
       <action name="GoToDesktop">
         <to>1</to>
@@ -284,15 +347,18 @@
       </action>
     </keybind>
 
+    <keybind key="W-KP_6">
+      <action name="GoToDesktop">
+        <to>6</to>
+      </action>
+    </keybind>
+
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
-    </keybind>
-    <keybind key="W-Up">
-      <action name="ToggleMaximize"/>
     </keybind>
     <keybind key="A-Escape">
       <action name="Lower"/>
@@ -732,7 +798,6 @@
   # own rules, but without the comments of course.
   # you may use one or more of the name/class/role/title/type rules to specify
   # windows to match
-
   <application name="the window's _OB_APP_NAME property (see obxprop)"
               class="the window's _OB_APP_CLASS property (see obxprop)"
           groupname="the window's _OB_APP_GROUP_NAME property (see obxprop)"
@@ -743,27 +808,19 @@
                       (if unspecified, then it is 'dialog' for child windows)">
   # you may set only one of name/class/role/title/type, or you may use more
   # than one together to restrict your matches.
-
   # the name, class, role, and title use simple wildcard matching such as those
   # used by a shell. you can use * to match any characters and ? to match
   # any single character.
-
   # the type is one of: normal, dialog, splash, utility, menu, toolbar, dock,
   #    or desktop
-
   # when multiple rules match a window, they will all be applied, in the
   # order that they appear in this list
-
-
     # each rule element can be left out or set to 'default' to specify to not 
     # change that attribute of the window
-
     <decor>yes</decor>
     # enable or disable window decorations
-
     <shade>no</shade>
     # make the window shaded when it appears, or not
-
     <position force="no">
       # the position is only used if both an x and y coordinate are provided
       # (and not set to 'default')
@@ -780,7 +837,6 @@
       # specifies the monitor in a xinerama setup.
       # 1 is the first head, or 'mouse' for wherever the mouse is
     </position>
-
     <size>
       # the size to make the window.
       <width>20</width>
@@ -790,35 +846,26 @@
       # appears on.
       <height>30%</height>
     </size>
-
     <focus>yes</focus>
     # if the window should try be given focus when it appears. if this is set
     # to yes it doesn't guarantee the window will be given focus. some
     # restrictions may apply, but Openbox will try to
-
     <desktop>1</desktop>
     # 1 is the first desktop, 'all' for all desktops
-
     <layer>normal</layer>
     # 'above', 'normal', or 'below'
-
     <iconic>no</iconic>
     # make the window iconified when it appears, or not
-
     <skip_pager>no</skip_pager>
     # asks to not be shown in pagers
-
     <skip_taskbar>no</skip_taskbar>
     # asks to not be shown in taskbars. window cycling actions will also
     # skip past such windows
-
     <fullscreen>yes</fullscreen>
     # make the window in fullscreen mode when it appears
-
     <maximized>true</maximized>
     # 'Horizontal', 'Vertical' or boolean (yes/no)
   </application>
-
   # end of the example
 -->
   </applications>
