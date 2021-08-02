@@ -1,0 +1,4 @@
+xrandr -s 1920X1080 -r 60sh ~/.fehbg &
+xrandr --auto --output eDP-1 --mode 1366x768 --right-of HDMI-1
+setxkbmap -model abnt2 -layout br -variant abnt2 &
+feh --bg-scale /home/wesley.paula/Documents/1__wodp3cKM020XC23IGDaaw.jpeg &
